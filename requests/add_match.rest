@@ -1,0 +1,12 @@
+POST http://localhost:3001/api/matches
+Content-Type: application/json
+
+{
+     "teamA": {
+       "name": "Helsinki Seagulls"
+     },
+     "teamB": {
+       "name": "Kataja Basket"
+     },
+     "date": "2024-03-29T18:00:00"
+}
