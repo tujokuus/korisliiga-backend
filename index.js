@@ -1,5 +1,18 @@
 const express = require('express')
 const app = express()
+const morgan = require('morgan')
+
+app.use(express.json())
+
+app.use(
+  morgan(':method :url :status :res[content-length] - :response-time ms :post :patch')
+)
+morgan.token('post', (req) => {
+  return req.method === 'POST' ? JSON.stringify(req.body) : ' '
+})
+morgan.token('patch', (req) => {
+  return req.method === 'PATCH' ? JSON.stringify(req.body) : ' '
+})
 
 let matches = [
     {
@@ -129,7 +142,6 @@ let predictions = [
       }
 ]
 
-app.use(express.json())
 
 app.get('/', (request, response) => {
     response.send('<h1>Hello World!</h1>')
