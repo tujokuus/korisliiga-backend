@@ -142,15 +142,125 @@ let predictions = [
       }
 ]
 
+let results = [
+      {
+        "id": "1",
+        "match_id": 1,
+        "winner": "Tampereen Pyrintö",
+        "score": "85-80",
+        "created_at": "2024-03-15T20:00:00"
+      },
+      {
+        "id": "2",
+        "match_id": 2,
+        "winner": "Karhubasket",
+        "score": "67-85",
+        "created_at": "2024-03-17T21:00:00"
+      }
+]
+
+let standings = [
+  {
+    "team": "Tampereen Pyrintö",
+    "played": 20,
+    "won": 15,
+    "lost": 5,
+    "points": 30,
+    "id": "5218"
+  },
+  {
+    "team": "Kouvot",
+    "played": 20,
+    "won": 14,
+    "lost": 6,
+    "points": 28,
+    "id": "81a7"
+  },
+  {
+    "team": "BC Nokia",
+    "played": 20,
+    "won": 13,
+    "lost": 7,
+    "points": 26,
+    "id": "7fad"
+  },
+  {
+    "team": "Kataja Basket",
+    "played": 20,
+    "won": 12,
+    "lost": 8,
+    "points": 24,
+    "id": "c0d6"
+  },
+  {
+    "team": "Karhubasket",
+    "played": 20,
+    "won": 11,
+    "lost": 9,
+    "points": 22,
+    "id": "b509"
+  },
+  {
+    "team": "Lahti Basketball",
+    "played": 20,
+    "won": 10,
+    "lost": 10,
+    "points": 20,
+    "id": "260a"
+  },
+  {
+    "team": "Ura Basket",
+    "played": 20,
+    "won": 9,
+    "lost": 11,
+    "points": 18,
+    "id": "5188"
+  },
+  {
+    "team": "Kobrat",
+    "played": 20,
+    "won": 8,
+    "lost": 12,
+    "points": 16,
+    "id": "08e6"
+  },
+  {
+    "team": "Vilpas Vikings",
+    "played": 20,
+    "won": 7,
+    "lost": 13,
+    "points": 14,
+    "id": "5ea2"
+  },
+  {
+    "team": "Bisons",
+    "played": 20,
+    "won": 6,
+    "lost": 14,
+    "points": 12,
+    "id": "79e2"
+  },
+  {
+    "team": "Helsinki Seagulls",
+    "played": 20,
+    "won": 5,
+    "lost": 15,
+    "points": 10,
+    "id": "bdc2"
+  }
+]
+
 
 app.get('/', (request, response) => {
     response.send('<h1>Hello World!</h1>')
 })
 
+// hakee kaikki ottelut
 app.get('/api/matches', (request, response) => {
     response.json(matches)
 })
 
+// hakee yhden ottelun
 app.get('/api/matches/:id', (request, response) => {
     const id = request.params.id
     const match = matches.find(match => match.id === id)
@@ -161,7 +271,8 @@ app.get('/api/matches/:id', (request, response) => {
         response.status(404).end()
     }
 })
-//
+
+// poistaa yhden ottelun
 app.delete('/api/matches/:id', (request, response) => {
     const id = request.params.id
     matches = matches.filter(match => match.id !== id)
@@ -169,6 +280,7 @@ app.delete('/api/matches/:id', (request, response) => {
     response.status(204).end()
 })
 
+// lisää uuden ottelun
 app.post('/api/matches', (request, response) => {
     const maxId = matches.length > 0
         ? Math.max(...matches.map(match => Number(match.id)))
@@ -182,10 +294,12 @@ app.post('/api/matches', (request, response) => {
     response.json(match)
 })
 
+// hakee kaikki ennustukset
 app.get('/api/predictions', (request, response) => {
     response.json(predictions)
 })
 
+// hakee yhden ennustuksen
 app.get('/api/predictions/:id', (request,response) => {
     const id = request.params.id
     const prediction = predictions.find(prediction => prediction.id === id)
@@ -197,6 +311,7 @@ app.get('/api/predictions/:id', (request,response) => {
     }
 })
 
+// muokkaa ennustusta
 app.patch('/api/predictions/:id', (request, response) => {
     const id = request.params.id
     const updatePrediction = request.body
