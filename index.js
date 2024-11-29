@@ -294,6 +294,11 @@ app.post('/api/matches', (request, response) => {
     response.json(match)
 })
 
+// hakee sarjataulukon
+app.get('/api/standings', (request, response) => {
+  response.json(standings)
+})
+
 // hakee kaikki ennustukset
 app.get('/api/predictions', (request, response) => {
     response.json(predictions)
