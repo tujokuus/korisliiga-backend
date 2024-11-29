@@ -311,6 +311,20 @@ app.get('/api/predictions/:id', (request,response) => {
     }
 })
 
+// lisää uuden ennustuksen
+app.post('/api/predictions', (request, response) => {
+  const maxId = predictions.length > 0
+      ? Math.max(...predictions.map(predictions => Number(prediction.id)))
+      : 0
+
+  const prediction = request.body
+  prediction.id = String(maxId + 1)
+
+  predictions = predictions.concat(prediction)
+
+  response.json(prediction)
+})
+
 // muokkaa ennustusta
 app.patch('/api/predictions/:id', (request, response) => {
     const id = request.params.id
