@@ -299,6 +299,11 @@ app.get('/api/standings', (request, response) => {
   response.json(standings)
 })
 
+// hakee tulokset
+app.get('/api/results', (request, response) => {
+  response.json(results)
+})
+
 // hakee kaikki ennustukset
 app.get('/api/predictions', (request, response) => {
     response.json(predictions)
