@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
+const cors = require('cors')
 
+app.use(cors())
 app.use(express.json())
 
 app.use(
@@ -15,86 +17,306 @@ morgan.token('patch', (req) => {
 })
 
 let matches = [
-    {
-        "id": "1",
-        "teamA": {
-          "name": "Tampereen Pyrintö"
-        },
-        "teamB": {
-          "name": "Bisons"
-        },
-        "date": "2024-03-15T18:30:00"
-      },
-      {
-        "id": "2",
-        "teamA": {
-          "name": "Kouvot"
-        },
-        "teamB": {
-          "name": "Karhubasket"
-        },
-        "date": "2024-03-17T19:00:00"
-      },
-      {
-        "id": "3",
-        "teamA": {
-          "name": "BC Nokia"
-        },
-        "teamB": {
-          "name": "Helsinki Seagulls"
-        },
-        "date": "2024-03-19T17:00:00"
-      },
-      {
-        "id": "4",
-        "teamA": {
-          "name": "Kataja Basket"
-        },
-        "teamB": {
-          "name": "Lahti Basketball"
-        },
-        "date": "2024-03-21T18:45:00"
-      },
-      {
-        "id": "5",
-        "teamA": {
-          "name": "Ura Basket"
-        },
-        "teamB": {
-          "name": "Kouvot"
-        },
-        "date": "2024-03-23T18:00:00"
-      },
-      {
-        "id": "6",
-        "teamA": {
-          "name": "Kobrat"
-        },
-        "teamB": {
-          "name": "Tampereen Pyrintö"
-        },
-        "date": "2024-03-25T20:15:00"
-      },
-      {
-        "id": "7",
-        "teamA": {
-          "name": "Vilpas Vikings"
-        },
-        "teamB": {
-          "name": "BC Nokia"
-        },
-        "date": "2024-03-27T19:30:00"
-      },
-      {
-        "id": "8",
-        "teamA": {
-          "name": "Helsinki Seagulls"
-        },
-        "teamB": {
-          "name": "Kataja Basket"
-        },
-        "date": "2024-03-29T18:00:00"
-      }
+  {
+    "id": "1",
+    "teamA": {
+      "name": "Tampereen Pyrintö"
+    },
+    "teamB": {
+      "name": "Bisons"
+    },
+    "date": "2024-03-15T18:30:00"
+  },
+  {
+    "id": "2",
+    "teamA": {
+      "name": "Kouvot"
+    },
+    "teamB": {
+      "name": "Karhubasket"
+    },
+    "date": "2024-03-17T19:00:00"
+  },
+  {
+    "id": "3",
+    "teamA": {
+      "name": "BC Nokia"
+    },
+    "teamB": {
+      "name": "Helsinki Seagulls"
+    },
+    "date": "2024-03-19T17:00:00"
+  },
+  {
+    "id": "4",
+    "teamA": {
+      "name": "Kataja Basket"
+    },
+    "teamB": {
+      "name": "Lahti Basketball"
+    },
+    "date": "2024-03-21T18:45:00"
+  },
+  {
+    "id": "5",
+    "teamA": {
+      "name": "Ura Basket"
+    },
+    "teamB": {
+      "name": "Kouvot"
+    },
+    "date": "2024-03-23T18:00:00"
+  },
+  {
+    "id": "6",
+    "teamA": {
+      "name": "Kobrat"
+    },
+    "teamB": {
+      "name": "Tampereen Pyrintö"
+    },
+    "date": "2024-03-25T20:15:00"
+  },
+  {
+    "id": "7",
+    "teamA": {
+      "name": "Vilpas Vikings"
+    },
+    "teamB": {
+      "name": "BC Nokia"
+    },
+    "date": "2024-03-27T19:30:00"
+  },
+  {
+    "id": "8",
+    "teamA": {
+      "name": "Helsinki Seagulls"
+    },
+    "teamB": {
+      "name": "Kataja Basket"
+    },
+    "date": "2024-03-29T18:00:00"
+  },
+  {
+    "id": "9",
+    "teamA": {
+      "name": "Lahti Basketball"
+    },
+    "teamB": {
+      "name": "Kobrat"
+    },
+    "date": "2024-03-31T19:00:00"
+  },
+  {
+    "id": "10",
+    "teamA": {
+      "name": "Karhubasket"
+    },
+    "teamB": {
+      "name": "Vilpas Vikings"
+    },
+    "date": "2024-04-02T17:30:00"
+  },
+  {
+    "id": "11",
+    "teamA": {
+      "name": "Bisons"
+    },
+    "teamB": {
+      "name": "Ura Basket"
+    },
+    "date": "2024-04-04T18:45:00"
+  },
+  {
+    "id": "12",
+    "teamA": {
+      "name": "Kouvot"
+    },
+    "teamB": {
+      "name": "BC Nokia"
+    },
+    "date": "2024-04-06T19:15:00"
+  },
+  {
+    "id": "13",
+    "teamA": {
+      "name": "Tampereen Pyrintö"
+    },
+    "teamB": {
+      "name": "Helsinki Seagulls"
+    },
+    "date": "2024-04-08T20:00:00"
+  },
+  {
+    "id": "14",
+    "teamA": {
+      "name": "Kataja Basket"
+    },
+    "teamB": {
+      "name": "Karhubasket"
+    },
+    "date": "2024-04-10T18:30:00"
+  },
+  {
+    "id": "15",
+    "teamA": {
+      "name": "Lahti Basketball"
+    },
+    "teamB": {
+      "name": "Bisons"
+    },
+    "date": "2024-04-12T19:00:00"
+  },
+  {
+    "id": "16",
+    "teamA": {
+      "name": "Kobrat"
+    },
+    "teamB": {
+      "name": "Kouvot"
+    },
+    "date": "2024-04-14T17:00:00"
+  },
+  {
+    "id": "17",
+    "teamA": {
+      "name": "Vilpas Vikings"
+    },
+    "teamB": {
+      "name": "Ura Basket"
+    },
+    "date": "2024-04-16T18:15:00"
+  },
+  {
+    "id": "18",
+    "teamA": {
+      "name": "BC Nokia"
+    },
+    "teamB": {
+      "name": "Tampereen Pyrintö"
+    },
+    "date": "2024-04-18T19:30:00"
+  },
+  {
+    "id": "19",
+    "teamA": {
+      "name": "Helsinki Seagulls"
+    },
+    "teamB": {
+      "name": "Lahti Basketball"
+    },
+    "date": "2024-04-20T18:00:00"
+  },
+  {
+    "id": "20",
+    "teamA": {
+      "name": "Karhubasket"
+    },
+    "teamB": {
+      "name": "Kobrat"
+    },
+    "date": "2024-04-22T19:00:00"
+  },
+  {
+    "id": "21",
+    "teamA": {
+      "name": "Tampereen Pyrintö"
+    },
+    "teamB": {
+      "name": "Kouvot"
+    },
+    "date": "2024-04-24T18:30:00"
+  },
+  {
+    "id": "22",
+    "teamA": {
+      "name": "BC Nokia"
+    },
+    "teamB": {
+      "name": "Karhubasket"
+    },
+    "date": "2024-04-26T19:00:00"
+  },
+  {
+    "id": "23",
+    "teamA": {
+      "name": "Lahti Basketball"
+    },
+    "teamB": {
+      "name": "Vilpas Vikings"
+    },
+    "date": "2024-04-28T17:00:00"
+  },
+  {
+    "id": "24",
+    "teamA": {
+      "name": "Kataja Basket"
+    },
+    "teamB": {
+      "name": "Bisons"
+    },
+    "date": "2024-04-30T18:15:00"
+  },
+  {
+    "id": "25",
+    "teamA": {
+      "name": "Ura Basket"
+    },
+    "teamB": {
+      "name": "Helsinki Seagulls"
+    },
+    "date": "2024-05-02T19:30:00"
+  },
+  {
+    "id": "26",
+    "teamA": {
+      "name": "Kouvot"
+    },
+    "teamB": {
+      "name": "Kobrat"
+    },
+    "date": "2024-05-04T18:00:00"
+  },
+  {
+    "id": "27",
+    "teamA": {
+      "name": "Tampereen Pyrintö"
+    },
+    "teamB": {
+      "name": "Vilpas Vikings"
+    },
+    "date": "2024-05-06T19:00:00"
+  },
+  {
+    "id": "28",
+    "teamA": {
+      "name": "BC Nokia"
+    },
+    "teamB": {
+      "name": "Lahti Basketball"
+    },
+    "date": "2024-05-08T18:30:00"
+  },
+  {
+    "id": "29",
+    "teamA": {
+      "name": "Karhubasket"
+    },
+    "teamB": {
+      "name": "Ura Basket"
+    },
+    "date": "2024-05-10T19:00:00"
+  },
+  {
+    "id": "30",
+    "teamA": {
+      "name": "Helsinki Seagulls"
+    },
+    "teamB": {
+      "name": "Kataja Basket"
+    },
+    "date": "2024-05-12T17:00:00"
+  }
 ]
 
 let predictions = [
@@ -324,7 +546,7 @@ app.get('/api/predictions/:id', (request,response) => {
 // lisää uuden ennustuksen
 app.post('/api/predictions', (request, response) => {
   const maxId = predictions.length > 0
-      ? Math.max(...predictions.map(predictions => Number(prediction.id)))
+      ? Math.max(...predictions.map(prediction => Number(prediction.id)))
       : 0
 
   const prediction = request.body
@@ -337,6 +559,7 @@ app.post('/api/predictions', (request, response) => {
 
 // muokkaa ennustusta
 app.patch('/api/predictions/:id', (request, response) => {
+  console.log(request.body);
     const id = request.params.id
     const updatePrediction = request.body
 
