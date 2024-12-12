@@ -1,6 +1,0 @@
-PATCH http://localhost:3001/api/predictions/1 
-Content-Type: application/json
-
-{
-    "predicted_winner": "Bisons"
-}
